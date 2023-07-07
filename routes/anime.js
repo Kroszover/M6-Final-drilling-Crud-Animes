@@ -12,15 +12,19 @@ router.get("/", (req, res) => {
 
 //Ruta y función para listar por ID:
 router.get("/:id", (req, res) => {
-  const data = fs.readFileSync("./data/anime.json", "utf8");
+  const id = req.params.id;
+
+  // Leer los datos del archivo anime.json
+  const data = fs.readFileSync("./data/anime.json");
   const animes = JSON.parse(data);
 
+  // Buscar el anime por su id
   const anime = animes[id];
 
   if (anime) {
     res.json(anime);
   } else {
-    res.status(404).json({ error: "No encontramos tu anime" });
+    res.status(404).json({ error: "No encontramos tu anime :(" });
   }
 });
 
