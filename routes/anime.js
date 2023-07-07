@@ -10,6 +10,28 @@ router.get("/", (req, res) => {
   res.render("index", { animes });
 });
 
+//CRUD
+
+// Ruta y función para crear un nuevo anime
+router.post("/crear", (req, res) => {
+  const nuevoAnime = req.body;
+
+  const data = fs.readFileSync("./data/anime.json", "utf8");
+  const animes = JSON.parse(data);
+
+  const nuevoId = Object.keys(animes).length + 1;
+
+  animes[nuevoId] = nuevoAnime;
+
+  fs.writeFileSync("./data/anime.json", JSON.stringify(animes));
+
+  res.json({
+    success: true,
+    anime: animes[nuevoId],
+    message: "Anime creado con éxito",
+  });
+});
+
 //Ruta y función para listar por ID:
 router.get("/:id", (req, res) => {
   const id = req.params.id;
