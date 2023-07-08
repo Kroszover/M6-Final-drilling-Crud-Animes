@@ -1,3 +1,4 @@
+const e = require("express");
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
@@ -62,6 +63,28 @@ router.get("/buscar/:nombre", (req, res) => {
   ); //Comparamos el parametro nombre con el nombre de cada anime en el JSON
   if (anime) {
     res.json(anime);
+  } else {
+    res.status(404).json({ error: "No encontramos tu anime" });
+  }
+});
+
+// Ruta y función para actualizar un anime
+router.put("/actualizar/:id", (req, res) => {
+  const id = req.params.id;
+  const animeActualizado = req.body;
+
+  const data = fs.readFileSync("./data/anime.json", "utf8");
+  const animes = JSON.parse(data);
+
+  if (animes.hasOwnProperty(id)) {
+    animes[id] = { ...animes[id], ...animeActualizado };
+    fs.writeFileSync("./data/anime.json", JSON.stringify(animes));
+
+    res.json({
+      success: true,
+      anime: animes[id],
+      message: "Anime actualizado",
+    });
   } else {
     res.status(404).json({ error: "No encontramos tu anime" });
   }
