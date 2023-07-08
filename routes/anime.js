@@ -90,4 +90,25 @@ router.put("/actualizar/:id", (req, res) => {
   }
 });
 
+// Ruta y función para eliminar un anime
+router.delete("/eliminar/:id", (req, res) => {
+  const id = req.params.id;
+  const data = fs.readFileSync("./data/anime.json", "utf8");
+  const animes = JSON.parse(data);
+
+  if (animes.hasOwnProperty(id)) {
+    const animeEliminado = animes[id];
+    delete animes[id];
+    fs.writeFileSync("./data/anime.json", JSON.stringify(animes));
+
+    res.json({
+      success: true,
+      anime: animeEliminado,
+      message: "Anime eliminado",
+    });
+  } else {
+    res.status(404).json({ error: "No encontramos tu anime" });
+  }
+});
+
 module.exports = router;
