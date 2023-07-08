@@ -8,6 +8,9 @@ app.set("view engine", "hbs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//Bootstrap
+app.use(express.static("public"));
+
 // Definimos la ruta de anime.js
 app.use("/anime", animeRoutes);
 

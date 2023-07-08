@@ -1,0 +1,35 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+table {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    margin: 0 auto;
+    table-layout: fixed;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: bold;
+    padding: 10px;
+}
+
+td {
+    color: #555;
+    padding: 10px;
+}

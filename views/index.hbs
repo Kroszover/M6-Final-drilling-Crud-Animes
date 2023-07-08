@@ -3,14 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="/bootstrap.min.js"></script>
     <title>Animes</title>
 </head>
 <body>
-    <h1>Animes</h1>
-    <ul>
-        {{#each animes}}
-            <li>{{nombre}}</li>
-        {{/each}}
-    </ul>
+   <div class="container mt-4">
+  <h1>Animes</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Género</th>
+        <th>Año</th>
+        <th>Autor</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each animes}}
+      <tr>
+        <td>{{@key}}</td>
+        <td>{{nombre}}</td>
+        <td>{{genero}}</td>
+        <td>{{año}}</td>
+        <td>{{autor}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
 </body>
 </html>
